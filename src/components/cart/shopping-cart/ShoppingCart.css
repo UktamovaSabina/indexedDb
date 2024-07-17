@@ -1,0 +1,24 @@
+.shopping-cart-wrapper {
+    max-width: 50%;
+    width: 100%;
+    color: #1E1E1E;
+}
+
+.continue-heading {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 5px;
+    color: #1E1E1E;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 27px;
+    margin-bottom: 23px;
+}
+
+.shopping-cart-wrapper h4 {
+    margin-bottom: 2px;
+}
+.shopping-cart-wrapper p {
+    margin-bottom: 29px;
+}

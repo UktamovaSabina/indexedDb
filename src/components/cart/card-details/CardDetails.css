@@ -1,0 +1,31 @@
+.card-details {
+    max-width: 388px;
+    width: 100%;
+    color: #FEFCFC;
+    padding: 27px 19px 21px 19px;
+    border-radius: 20px;
+    background-color: #565ABB;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 21px;
+}
+
+.card-title-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.card-title-wrapper h3 {
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 33px;
+}
+
+.card-title-wrapper img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 8px;
+}

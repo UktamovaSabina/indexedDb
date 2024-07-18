@@ -14,7 +14,17 @@ const dbPromise = openDB(DB_NAME, DB_VERSION, {
 
 export const getCartItems = async () => {
   const db = await dbPromise;
-  return db.getAll(STORE_NAME);
+  const data = await db.getAll(STORE_NAME);
+  const arr = []
+  data.map(d => {
+    const index = arr.findIndex(a => a.product_id === d.product_id);
+    if (index !== -1) {
+      arr[index].count++;
+    } else {
+      arr.push({ ...d, count: 1 });
+    }
+  })
+  return {arr: arr, length: data.length};
 };
 
 export const addItemToCart = async (item) => {

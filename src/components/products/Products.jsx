@@ -33,7 +33,7 @@ const Products = () => {
                 <NavLink to={'/cart'} className='cart-icon'>{pendingProducts}<BsCart4 /></NavLink>
                 <div className='products-wrapper'>{
                     products.map((product) => {
-                        return <article key={product.product_id}>
+                        return <article key={product.product_id} className="products-wrapper__item">
                             <img src={product.img} alt={product.name} />
                             <h3>{product.name}</h3>
                             <p>{product.info}</p>

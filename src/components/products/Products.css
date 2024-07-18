@@ -38,7 +38,7 @@ h1 {
     gap: 50px;
 }
 
-article {
+.products-wrapper__item {
     max-width: 300px;
     width: 100%;
     display: flex;

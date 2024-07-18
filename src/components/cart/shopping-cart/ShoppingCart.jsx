@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { NavLink } from 'react-router-dom';
 import { SlArrowLeft } from "react-icons/sl";
 import './ShoppingCart.css';
@@ -7,28 +7,25 @@ import Product from './Product';
 
 const ShoppingCart = () => {
   const [pendingProducts, setPendingProducts] = useState([]);
+  const [length, setLength] = useState(0);
+
+  const settingData = useCallback(async () => {
+    let data = await getCartItems()
+    setPendingProducts(data.arr)
+    setLength(data.length)
+  }, [])
 
   useEffect(() => {
-    let data;
-    async function pr() {
-      data = await getCartItems()
-      setPendingProducts(data)
-    }
-    pr()
-    console.log(pendingProducts);
-  }, [])
+    settingData()
+  }, [settingData])
 
   return (
     <div className='shopping-cart-wrapper'>
       <NavLink to={'/'} className="continue-heading"><SlArrowLeft /> Shopping Continue</NavLink >
       <hr style={{ border: "1px solid #D0CFCF", marginBottom: "24px" }} />
       <h4>Shopping cart </h4>
-      <p>You have {pendingProducts.length} {pendingProducts.length > 0 ? 'items' : 'item'} in your cart</p>
-      {
-        pendingProducts.map((p, i) => {
-          return <Product key={i} product={p} />
-        })
-      }
+      <p>You have {length} {length > 0 ? 'items' : 'item'} in your cart</p>
+      <Product products={pendingProducts} />
     </div>
   )
 }

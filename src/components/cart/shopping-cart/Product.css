@@ -67,19 +67,16 @@
     line-height: 21px;
 }
 
-.right-info>input[type=number] {
-    outline: none;
-    border: none;
-    max-width: 45px;
-    font-size: 23px;
+.delete-btn {
+    font-size: 30px;
+    color: #393939;
     cursor: pointer;
 }
-.right-info>input[type=number]:hover {
-    background-color: aqua;
+
+.delete-btn:hover {
+    color: crimson;
 }
 
-@media screen and (max-width: 800px) {
-    .right-info>input[type=number] {
-        max-width: 40px;
-    }
+.delete-btn:active {
+    color: red;
 }

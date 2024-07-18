@@ -26,8 +26,11 @@ h1 {
     background-color: rgb(16, 217, 77);
     border: 3px dashed red;
     border-radius: 50%;
-    box-shadow: rgb(133, 239, 11) 0px 18px 50px -10px;
     cursor: pointer;
+}
+
+.cart-icon:hover {
+    box-shadow: rgb(133, 239, 11) 0px 18px 50px -10px;
 }
 
 .products-wrapper {
@@ -90,6 +93,7 @@ article p {
 .add-btn:hover {
     opacity: 90%;
 }
+
 .add-btn:active {
     opacity: 75%;
 }

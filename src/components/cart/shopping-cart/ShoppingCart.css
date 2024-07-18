@@ -28,6 +28,10 @@
     margin-bottom: 23px;
 }
 
+.continue-heading:hover {
+    color: green;
+}
+
 .shopping-cart-wrapper h4 {
     margin-bottom: 2px;
 }

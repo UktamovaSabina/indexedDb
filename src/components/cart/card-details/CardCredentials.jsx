@@ -1,9 +1,20 @@
 import React from 'react';
 import './CardCredentials.css';
 
-const CardCredentials = ({ credentials, setCredentials }) => {
+const CardCredentials = ({ reset, setReset, credentials, setCredentials }) => {
+
+    const handleCardNumberChange = (e) => {
+        setReset(false)
+        let value = e.target.value;
+        value = value.replace(/[^0-9]/g, '');
+        value = value.replace(/\s+/g, '').replace(/(\d{4})/g, '$1 ').trim();
+        setCredentials((prev) => {
+            return { ...prev, cardNumber: value }
+        });
+    }
 
     const handleExpiryChange = (e) => {
+        setReset(false)
         let value = e.target.value;
         value = value.replace(/[^0-9\/]/g, '');
         if (value.length >= 2 && value[2] !== '/') {
@@ -28,16 +39,9 @@ const CardCredentials = ({ credentials, setCredentials }) => {
         }
     };
 
-    const handleCardNumberChange = (e) => {
-        let value = e.target.value;
-        value = value.replace(/[^0-9]/g, '');
-        value = value.replace(/\s+/g, '').replace(/(\d{4})/g, '$1 ').trim();
-        setCredentials((prev) => {
-            return { ...prev, cardNumber: value }
-        });
-    }
 
     const handleCvvChange = (e) => {
+        setReset(false)
         let value = e.target.value;
         value = value.replace(/[^0-9]/g, '');
         setCredentials((prev) => {
@@ -55,9 +59,10 @@ const CardCredentials = ({ credentials, setCredentials }) => {
                 minLength={6}
                 required
                 onChange={(e) => {
+                    setReset(false)
                     setCredentials((prev) => { return { ...prev, cardName: e.target.value } })
                 }}
-                value={credentials.cardName ? credentials.cardName : ''} />
+                value={(credentials.cardName && !reset) ? credentials.cardName : ''} />
 
             <label htmlFor="card-number">Card Number</label>
             <input
@@ -68,7 +73,7 @@ const CardCredentials = ({ credentials, setCredentials }) => {
                 minLength={19}
                 required
                 onChange={handleCardNumberChange}
-                value={credentials.cardNumber ? credentials.cardNumber : ''}
+                value={(credentials.cardNumber && !reset) ? credentials.cardNumber : ''}
             />
 
             <div className='expiry-info'>
@@ -83,7 +88,7 @@ const CardCredentials = ({ credentials, setCredentials }) => {
                         required
                         onChange={handleExpiryChange}
                         onKeyDown={handleKeyDown}
-                        value={credentials.cardExpiry ? credentials.cardExpiry : ''}
+                        value={(credentials.cardExpiry && !reset) ? credentials.cardExpiry : ''}
                     />
 
                 </div>
@@ -97,7 +102,7 @@ const CardCredentials = ({ credentials, setCredentials }) => {
                         maxLength={3}
                         required
                         onChange={handleCvvChange}
-                        value={credentials.cardCvv ? credentials.cardCvv : ''}
+                        value={(credentials.cardCvv && !reset) ? credentials.cardCvv : ''}
                     />
                 </div>
             </div>

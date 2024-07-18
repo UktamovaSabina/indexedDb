@@ -19,7 +19,7 @@ const Product = ({ products, deleteItem }) => {
     return (
         <div className='wishlist-item-wrapper'>
             {
-                data.map(d => {
+                data.length > 0 ? data.map(d => {
                     return <article className='wishlist-item' key={d.id}>
                         <div className='left-info'>
                             <img src={d.img} alt={d.name} />
@@ -29,12 +29,13 @@ const Product = ({ products, deleteItem }) => {
                             </div>
                         </div>
                         <div className='right-info'>
-                            <input type="number" value={d.count} />
+                            <span><strong>{d.count}</strong></span>
+                            <span><strong>/</strong></span>
                             <span><strong>${d.price * d.count}</strong></span>
-                            <RiDeleteBinLine style={{ fontSize: "30px", color: "#393939", cursor: "pointer" }} onClick={() => { deleteItem(d.id) }} />
+                            <RiDeleteBinLine className='delete-btn' onClick={() => { deleteItem(d.id) }} />
                         </div>
                     </article>
-                })
+                }) : <h2>No product yet....</h2>
             }
         </div>
     )

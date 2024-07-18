@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useState } from 'react';
-import { useRef } from 'react';
 import './CardType.css';
 
 const card_types = [
@@ -18,7 +17,7 @@ const card_types = [
     }
 ]
 
-const CardType = ({ setCredentials }) => {
+const CardType = ({ reset, setCredentials }) => {
     const [data, setData] = useState('')
 
     const handleCardTypeChange = (e) => {
@@ -36,7 +35,7 @@ const CardType = ({ setCredentials }) => {
             <div className='card-types-wrapper'>
                 {
                     (data && card_types) ? card_types.map(({ name, img }) => {
-                        if (data === name) {
+                        if (data === name && !reset) {
                             return <React.Fragment key={name}>
                                 <input type="radio" id={name} name='cardType' value={name} onChange={handleCardTypeChange} />
                                 <label htmlFor={name}><img src={img} alt={name} width={75} className="type-radio-input checked" /></label>

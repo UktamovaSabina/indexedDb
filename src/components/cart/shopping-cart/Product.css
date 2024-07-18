@@ -1,5 +1,4 @@
 .wishlist-item-wrapper {
-    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -8,9 +7,7 @@
 }
 
 .wishlist-item {
-    max-width: 608px;
-    min-width: 608px;
-    width: 100%;
+    width: 608px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -20,10 +17,26 @@
     border-radius: 15px;
 }
 
+@media screen and (max-width: 650px) {
+    .wishlist-item {
+        max-width: 500px;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .wishlist-item {
+        max-width: 380px;
+        padding: 0px 10px;
+    }
+}
+
 .left-info {
     width: 100%;
     display: flex;
     align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    font-weight: 500;
 }
 
 .left-info>img {
@@ -32,8 +45,15 @@
     width: 100%;
 }
 
-.left-info>div {
-    display: inline;
+.left-info h4 {
+    margin-top: 10px;
+    font-size: 18px;
+    line-height: 27px;
+}
+
+.left-info p {
+    font-size: 14px;
+    line-height: 19.1px;
 }
 
 .right-info {
@@ -47,9 +67,19 @@
     line-height: 21px;
 }
 
-.right-info > input[type=number]{
+.right-info>input[type=number] {
     outline: none;
     border: none;
     max-width: 45px;
     font-size: 23px;
+    cursor: pointer;
+}
+.right-info>input[type=number]:hover {
+    background-color: aqua;
+}
+
+@media screen and (max-width: 800px) {
+    .right-info>input[type=number] {
+        max-width: 40px;
+    }
 }

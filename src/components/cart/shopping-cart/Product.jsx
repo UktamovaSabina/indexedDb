@@ -5,9 +5,8 @@ import { useEffect } from 'react';
 import { RiDeleteBinLine } from "react-icons/ri";
 import "./Product.css"
 
-const Product = ({ products }) => {
+const Product = ({ products, deleteItem }) => {
     const [data, setData] = useState([]);
-    const [counts, setCounts] = useState([]);
 
     const fetchData = useCallback(() => {
         setData(products)
@@ -31,8 +30,8 @@ const Product = ({ products }) => {
                         </div>
                         <div className='right-info'>
                             <input type="number" value={d.count} />
-                            <span>${d.price * d.count}</span>
-                            <RiDeleteBinLine style={{fontSize: "30px", color: "#393939", cursor: "pointer"}}/>
+                            <span><strong>${d.price * d.count}</strong></span>
+                            <RiDeleteBinLine style={{ fontSize: "30px", color: "#393939", cursor: "pointer" }} onClick={() => { deleteItem(d.id) }} />
                         </div>
                     </article>
                 })

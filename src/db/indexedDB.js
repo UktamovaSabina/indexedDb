@@ -24,7 +24,7 @@ export const getCartItems = async () => {
       arr.push({ ...d, count: 1 });
     }
   })
-  return {arr: arr, length: data.length};
+  return { arr: arr, length: data.length };
 };
 
 export const addItemToCart = async (item) => {
@@ -34,5 +34,5 @@ export const addItemToCart = async (item) => {
 
 export const deleteCartItem = async (id) => {
   const db = await dbPromise;
-  return db.delete(STORE_NAME, id);
+  return db.delete(STORE_NAME, id)
 };

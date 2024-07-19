@@ -15,7 +15,7 @@ const dbPromise = openDB(DB_NAME, DB_VERSION, {
 export const getHistories = async () => {
   const db = await dbPromise;
   const data = await db.getAll(STORE_NAME);
- return data
+  return data
 };
 
 export const addHistory = async (item) => {

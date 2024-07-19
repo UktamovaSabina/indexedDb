@@ -17,7 +17,7 @@
     border-radius: 15px;
 }
 
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 1170px) {
     .wishlist-item {
         max-width: 500px;
     }
@@ -79,4 +79,9 @@
 
 .delete-btn:active {
     color: red;
+}
+
+.no-product-indicator {
+    font-size: 23px;
+    color: rgba(0, 0, 0, 0.301);
 }

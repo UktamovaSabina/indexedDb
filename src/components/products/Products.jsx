@@ -1,11 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink } from "react-router-dom"
 import products from '../../db/products';
 import "./Products.css";
 import { BsCart4 } from "react-icons/bs";
 import { addItemToCart, getCartItems } from '../../db/indexedDB';
-import { useState } from 'react';
-import { useEffect } from 'react';
 
 const Products = () => {
 

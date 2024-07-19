@@ -1,44 +1,49 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { getCartItems } from '../../../db/indexedDB';
+import React, { useState } from 'react';
+import { Flip, toast } from 'react-toastify';
+import { clearCart, getCartItems } from '../../../db/indexedDB';
 import CardCredentials from './CardCredentials';
 import './CardDetails.css';
 import CardType from './CardType';
 import TotalCounts from './TotalCounts';
 
-const CardDetails = ({total}) => {
+const CardDetails = ({ data, setData, total, addHistoryTransaction }) => {
   const [credentials, setCredentials] = useState({});
-  const [data, setData] = useState([]);
-  
   const [reset, setReset] = useState(false);
+
+  const clearCartDb = async () => {
+    await clearCart();
+    const dataP = await getCartItems();
+    setData(dataP.arr)
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!credentials.cardType) {
-      toast.error("choose 'card type'")
-    } else {
-      console.log(credentials, 'card cred');
-      console.log(data, 'products');
-      console.log(total + 4, 'products');
+    if (data.length < 1) {
+      toast.error("You have not chosen any product", {
+        transition: Flip,
+        autoClose: 500
+      });
+      return;
+    } else if (!credentials.cardType) {
+      toast.error("choose 'card type'", {
+        transition: Flip,
+        autoClose: 500
+      })
+      return;
+    }
+    else {
+      console.log(data, credentials, total);
+      addHistoryTransaction({ credentials, data, total })
+      clearCartDb()
       setReset(true)
       setCredentials({})
-      toast.success('Form submitted');
+      toast.success('Form submitted', {
+        transition: Flip,
+        autoClose: 500
+      });
+      return;
     }
   };
-
-  const dataFetching = useCallback(async () => {
-    let dataP = await getCartItems()
-    setData(dataP.arr)
-  }, [])
-
-  useEffect(() => {
-    dataFetching();
-  }, [dataFetching])
-
-  useEffect(() => {
-    
-  }, [])
 
   return (
     <div className='card-details'>
@@ -52,7 +57,6 @@ const CardDetails = ({total}) => {
         <hr style={{ border: "1px, solid, #5F65C3", marginBottom: "14px" }} />
         <TotalCounts total={total} />
       </form>
-      <ToastContainer />
     </div>
   )
 }

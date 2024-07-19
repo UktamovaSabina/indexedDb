@@ -1,0 +1,15 @@
+.order-heading {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.ordered-food h6{
+    font-size: 16px;
+    color: rgb(66, 4, 4);
+    margin-bottom: 3px;
+}
+
+.ordered-food p{
+    font-size: 16px;
+    margin-bottom: 10px;
+}

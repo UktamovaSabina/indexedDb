@@ -36,3 +36,8 @@ export const deleteCartItem = async (id) => {
   const db = await dbPromise;
   return db.delete(STORE_NAME, id)
 };
+
+export const clearCart = async () => {
+  const db = await dbPromise;
+  return db.clear(STORE_NAME);
+};

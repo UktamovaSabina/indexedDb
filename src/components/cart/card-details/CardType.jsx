@@ -18,14 +18,14 @@ const card_types = [
 ]
 
 const CardType = ({ reset, setCredentials }) => {
-    const [data, setData] = useState('')
+    const [dataValue, setDataValue] = useState('')
 
     const handleCardTypeChange = (e) => {
         const value = e.target.value;
         setCredentials((prev) => {
             return { ...prev, cardType: value }
         })
-        setData(value)
+        setDataValue(value)
     };
 
 
@@ -34,8 +34,8 @@ const CardType = ({ reset, setCredentials }) => {
             <h4>Card Type</h4>
             <div className='card-types-wrapper'>
                 {
-                    (data && card_types) ? card_types.map(({ name, img }) => {
-                        if (data === name && !reset) {
+                    (dataValue && card_types) ? card_types.map(({ name, img }) => {
+                        if (dataValue === name && !reset) {
                             return <React.Fragment key={name}>
                                 <input type="radio" id={name} name='cardType' value={name} onChange={handleCardTypeChange} />
                                 <label htmlFor={name}><img src={img} alt={name} width={75} className="type-radio-input checked" /></label>
